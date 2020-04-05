@@ -34,8 +34,8 @@ public class Lottos implements Iterable<Lotto> {
     public WinningLottos ranks(LottoWinningNumber lottoWinningNumber) {
         Function<Lotto, LottoRank> key =
                 lotto -> lotto.rank(lottoWinningNumber);
-        Map<LottoRank, List<Lotto>> lottoRanks =
-                lottos.stream().collect(Collectors.groupingBy(key));
+        Map<LottoRank, List<Lotto>> lottoRanks = lottos.stream()
+                .collect(Collectors.groupingBy(key));
 
         return new WinningLottos(lottoRanks);
     }
