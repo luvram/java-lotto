@@ -23,8 +23,8 @@ public class LottosTest {
                 new LottoWinningNumber(firstRankNumbers, 45);
 
         WinningLottos winningLottos = lottos.ranks(lottoWinningNumber);
-        assertThat(winningLottos.get(LottoRank.FIRST).size()).isEqualTo(1);
-        assertThat(winningLottos.get(LottoRank.SECOND).size()).isEqualTo(1);
-        assertThat(winningLottos.get(LottoRank.THIRD).size()).isEqualTo(0);
+        assertThat(winningLottos.count(LottoRank.FIRST)).isEqualTo(1);
+        assertThat(winningLottos.count(LottoRank.SECOND)).isEqualTo(1);
+        assertThat(winningLottos.count(LottoRank.THIRD)).isEqualTo(0);
     }
 }

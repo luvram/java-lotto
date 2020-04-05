@@ -18,7 +18,7 @@ public class LottoResultTest {
         );
         WinningLottos winningLottos = new WinningLottos();
         winningLottos
-                .addToRank(LottoRank.FIFTH, lottoList);
+                .addToRank(LottoRank.FIFTH);
 
         LottoResult lottoResult = new LottoResult(winningLottos, 50000);
         assertThat(lottoResult.getRateOfReturn()).isEqualTo(0.1);
@@ -27,12 +27,9 @@ public class LottoResultTest {
     @DisplayName("수익률이 몹시 클 수도 있다.")
     @Test
     void big() {
-        List<Lotto> lottoList = Arrays.asList(
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))
-        );
         WinningLottos winningLottos = new WinningLottos();
-        winningLottos.addToRank(LottoRank.FIRST, lottoList);
+        winningLottos.addToRank(LottoRank.FIRST);
+        winningLottos.addToRank(LottoRank.FIRST);
 
         LottoResult lottoResult = new LottoResult(winningLottos, 5000);
         assertThat(lottoResult.getRateOfReturn()).isEqualTo(800_000);

@@ -38,7 +38,7 @@ public class LottoGameTest {
                 new LottoWinningNumber(Arrays.asList(1, 2, 3, 4, 5, 6), 45);
         LottoGame lottoGame = new LottoGame(1000, lottoIssuer);
         LottoResult lottoResult = lottoGame.result(lottoWinningNumber);
-        assertThat(lottoResult.getWinningLottos(LottoRank.FIRST).size())
+        assertThat(lottoResult.getWinningCount(LottoRank.FIRST))
                 .isEqualTo(1);
     }
 
@@ -51,7 +51,7 @@ public class LottoGameTest {
                 () -> new Lotto(Arrays.asList(1, 2, 3, 4, 5, 45));
         LottoGame lottoGame = new LottoGame(1000, lottoIssuer);
         LottoResult lottoResult = lottoGame.result(winningNumber);
-        assertThat(lottoResult.getWinningLottos(lottoRanks).size())
+        assertThat(lottoResult.getWinningCount(lottoRanks))
                 .isEqualTo(winnerCount);
     }
 

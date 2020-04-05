@@ -1,41 +1,32 @@
 package study.lotto.domain;
 
-import java.util.EnumMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class WinningLottos {
-    private EnumMap<LottoRank, Lottos> lottoRanks;
+    private List<LottoRank> ranks;
 
     public WinningLottos() {
-        initWinningLottos();
+        ranks = new ArrayList<>();
     }
 
-    public WinningLottos(Map<LottoRank, List<Lotto>> lottoRanks) {
-        initWinningLottos();
-
-        for (Map.Entry<LottoRank, List<Lotto>> entry : lottoRanks
-                .entrySet()) {
-            addToRank(entry.getKey(), entry.getValue());
-        }
+    public WinningLottos(List<LottoRank> ranks) {
+        this.ranks = new ArrayList<>(ranks);
     }
 
-    protected void addToRank(LottoRank lottoRank, List<Lotto> lottos) {
-        lottoRanks.get(lottoRank).addAll(lottos);
+    protected void addToRank(LottoRank lottoRank) {
+        ranks.add(lottoRank);
     }
 
-    public Lottos get(LottoRank lottoRank) {
-        return new Lottos(lottoRanks.get(lottoRank));
+    public int count(LottoRank lottoRank) {
+        return (int) ranks.stream()
+                .filter(rank -> rank == lottoRank)
+                .count();
     }
 
-    public int size(LottoRank lottoRank) {
-        return lottoRanks.get(lottoRank).size();
-    }
-
-    private void initWinningLottos() {
-        lottoRanks = new EnumMap<>(LottoRank.class);
-        for (LottoRank lottoRank : LottoRank.values()) {
-            lottoRanks.put(lottoRank, new Lottos());
-        }
+    public long getPrizeTotal() {
+        return ranks.stream()
+                .mapToLong(LottoRank::getPrize)
+                .reduce(0, Long::sum);
     }
 }

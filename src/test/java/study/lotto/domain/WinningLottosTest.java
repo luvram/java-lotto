@@ -18,8 +18,8 @@ public class WinningLottosTest {
         );
 
         WinningLottos winningLottos = new WinningLottos();
-        winningLottos.addToRank(LottoRank.FIRST, lottoList);
-        assertThat(winningLottos.size(LottoRank.FIRST)).isEqualTo(1);
+        winningLottos.addToRank(LottoRank.FIRST);
+        assertThat(winningLottos.count(LottoRank.FIRST)).isEqualTo(1);
     }
 
     @DisplayName("아무것도 추가하지 않으면 모든 등수는 0이다.")
@@ -27,7 +27,7 @@ public class WinningLottosTest {
     void init() {
         WinningLottos winningLottos = new WinningLottos();
         for (LottoRank lottoRank : LottoRank.values()) {
-            assertThat(winningLottos.size(lottoRank)).isEqualTo(0);
+            assertThat(winningLottos.count(lottoRank)).isEqualTo(0);
         }
     }
 

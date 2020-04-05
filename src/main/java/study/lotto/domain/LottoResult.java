@@ -15,24 +15,12 @@ public class LottoResult {
         this(winningLottos, new Amount(investmentAmount));
     }
 
-    public Lottos getWinningLottos(LottoRank lottoRank) {
-        return winningLottos.get(lottoRank);
-    }
-
     public double getRateOfReturn() {
-        double prizeTotal = getPrizeTotal();
-
+        double prizeTotal = this.winningLottos.getPrizeTotal();
         return prizeTotal / investmentAmount.getValue();
     }
 
-    private double getPrizeTotal() {
-        double prizeTotal = 0;
-
-        for (LottoRank lottoRank : LottoRank.values()) {
-            prizeTotal += this.winningLottos.size(lottoRank) *
-                    lottoRank.getPrize();
-        }
-
-        return prizeTotal;
+    public int getWinningCount(LottoRank lottoRank) {
+        return winningLottos.count(lottoRank);
     }
 }
